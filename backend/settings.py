@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import cloudinary
 import cloudinary.api
+import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,8 +29,16 @@ SECRET_KEY = 'django-insecure-vcyun6uhn+$pecz62t!uw*wgq%=1+s-^^5xff8l_y&@@c@o311
 DEBUG = True
 
 ALLOWED_HOSTS = ['*'] 
-CORS_ALLOW_ALL_ORIGIN  = True
+CORS_ALLOW_ALL_ORIGINS  = True
+CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ALLOW_HEADERS = [
+    'access-control-allow-origin',
+    'content-type',
+    'access-control-allow-headers',
+    'access-control-allow-methods',
+    'access-control-allow-credentials',
+]
 
 # Application definition
 
@@ -83,10 +93,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+    "default" : dj_database_url.parse('postgres://around_the_world_backend_user:weASPIw1hKgcLpFp3RAaYi5iHRAryerL@dpg-cn85hh6d3nmc73db267g-a.oregon-postgres.render.com/around_the_world_backend')
 }
 
 
